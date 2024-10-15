@@ -1,0 +1,44 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Product Image -->
+        <div class="col-md-6">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+            {% else %}
+                <img src="{% static 'store/images/no_image_available.png' %}" class="img-fluid" alt="No image">
+            {% endif %}
+        </div>
+
+
+        <!-- Product Details -->
+        <div class="col-md-6">
+            <h2>{{ product.name }}</h2>
+            <p class="text-muted">${{ product.price }}</p>
+            <p>{{ product.description }}</p>    
+
+
+            <!-- Add to Cart Form -->
+            <form method="post" action="{% url 'cart:cart_add' product.id %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="quantity" class="formlabel">Quantity:</label>
+                    <input type="number" name="quantity" value="1" min="1" class="form-control" id="quantity">
+                </div>
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+        </div>   
+    </div>
+
+        <!-- Back to Products -->
+        <a href="{% url 'store:product_list' %}" class="btn btnsecondary mt-4">Back to Products</a>
+</div>
+
+{% endblock %}
