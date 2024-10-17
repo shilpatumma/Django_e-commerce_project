@@ -9,4 +9,5 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'), # /store/signup/
     
     path('product/<int:id>/<slug:slug>/', views.product_detail, name='product_detail'), # /store/product/1/product-name/
+    path('accounts/logout/', views.logout_view, name='logout'),
 ]

@@ -3,13 +3,14 @@
 {% load static %}
 
 {% load crispy_forms_tags %}
-
+{% block title %} Cart Detail {% endblock %}
 {% block content %}
 
 <div class="container mt-5">
     <h2>Your Shopping Cart</h2>
 
     {% if cart %}
+    {% else %}
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -48,12 +49,16 @@
                 </tr>
             </tbody>    
         </table>
-
-        <a href="{% url 'orders:order_create' %}" class="btn btnsuccess">Proceed to Checkout</a>
+        <button type="submit" class="btn btn-dark mt-3"> 
+            <a class="text-white text-decoration-none" 
+                href="{% url 'orders:order_create' %}" class="btn btnsuccess"> Proceed to Checkout</a>
+        </button>
     {% else %}
         <p>Your cart is empty.</p>
-        <a href="{% url 'store:product_list' %}" class="btn btnprimary">Continue Shopping</a>
-
+        <button type="submit" class="btn btn-dark mt-3"> 
+            <a class="text-white text-decoration-none" 
+                href="{% url 'store:product_list' %}" class="btn btnprimary"> Continue Shopping </a>
+        </button>
     {% endif %}
 </div>
 {% endblock %} 

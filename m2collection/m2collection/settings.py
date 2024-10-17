@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
-import dj_database_url
-from decouple import config # Use python-decouple for environment variables
+# import django_heroku
+# import dj_database_url
+# from decouple import Config, Csv
+# config = Config()
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -159,23 +161,26 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+
 
 # SECRET_KEY and DEBUG should be set via environment variables for security
-SECRET_KEY = config('SECRET_KEY', default='your-default-secret-key')
-DEBUG = config('DEBUG', default=True, cast=bool)
-ALLOWED_HOSTS = ['*'] # Adjust for production
+# SECRET_KEY = config('SECRET_KEY', default='your-default-secret-key')
+# DEBUG = config('DEBUG', default=True, cast=bool)
+# ALLOWED_HOSTS = ['*'] # Adjust for production
 
 
 # WhiteNoise for static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # # Database Configuration
-DATABASES = {
-    'default': dj_database_url.config (
-        default = 'sqlite:///db.sqlite3',
-        conn_max_age = 600
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config (
+#         default = 'sqlite:///db.sqlite3',
+#         conn_max_age = 600
+#     )
+# }
 
 # Activate Django-Heroku
-django_heroku.settings(locals())
+# django_heroku.settings(locals())

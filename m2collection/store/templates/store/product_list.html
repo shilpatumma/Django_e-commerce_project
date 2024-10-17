@@ -1,9 +1,8 @@
 {% extends 'store/base.html' %}
-
 {% load static %}
 
 {% load crispy_forms_tags %}
-
+{% block title %} Product List {% endblock %}
 {% block content %}
 
 <div class="container mt-5">
@@ -22,7 +21,9 @@
         <ul class="list-inline">
             <li class="list-inline-item">
                 <a href="{% url 'store:product_list' %}" 
-                class="btn btn-sm {% if not selected_category %}btn-primary{% else %}btnoutline-primary{% endif %}">All</a>
+                    class= "btn btn-sm {% if not selected_category %} btn-primary 
+                                            {% else %} btnoutline-primary
+                                        {% endif %}"> All </a>
             </li>
 
             {% for category in categories %}

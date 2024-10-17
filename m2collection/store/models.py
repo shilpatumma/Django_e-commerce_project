@@ -37,7 +37,9 @@ class Product(models.Model):
     
     class Meta:
         ordering = ['-created']
-        index_together = (('id', 'slug'),) # Speeds up queries involving both id and slug
+        indexes = [
+            models.Index(fields=['id', 'slug']),  # Replace index_together with indexes
+        ]
         
     def __str__(self):
         return self.name
